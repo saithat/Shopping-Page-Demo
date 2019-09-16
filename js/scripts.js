@@ -3,7 +3,6 @@ $(document).ready(function() {
     endpoint =  "https://api.punkapi.com/v2/beers";
     
     $.getJSON(endpoint, function(data){
-        console.log(data)
         Display((data));
 
     })
@@ -32,12 +31,9 @@ $(document).ready(function() {
     
 
    $('.card-deck').on('click', '.add-to-cart', function(){
-     //function addToCart(){
-         //alert("button pressed!");
         let cartImage = $(this).closest(".card").find("img").attr("src");
         console.log(cartImage);
         let cartName = $(this).closest('.card-body').find('.beer-name').text();
-        //console.log(cartName);
 
         let cartHTML = 
         `
@@ -52,15 +48,11 @@ $(document).ready(function() {
         </tr>
         `;
 
-        //console.log(cartHTML);
     $('.cart-table').append(cartHTML);
     });
-     // }
 
     $('.cart-table').on('click', '.removal', function() {
-        //console.log("about to remove");
         $(this).closest('.cart-element').remove();
-        //console.log("tried to delete");
       });
 
     var currentPage = 1;+
@@ -72,28 +64,3 @@ $(document).ready(function() {
         })
     });
 });
-/*
-function addToCart(){
-    let cartImage = $(this).closest(".card").find(".card-img-top").attr("src");
-    console.log($(this).closest(".card"));
-    //console.log(cartImage);
-    let cartName = $(this).closest('.card-body').find('.beer-name').text();
-    console.log(cartName);
-
-    let cartHTML = 
-    `
-    <tr>
-        <td>${cartName}</td>
-        <td><img class="cart-image img-fluid img-thumbnail" src="${cartImage}"></img><\td>
-        <td>
-            <div class="removal>
-            <a href="#" class="btn btn-danger btn-sm">
-            <i class="fa fa-times"></i>
-            </div>
-        </td>
-    </tr>
-    `;
-$('.table-body').append(cartHTML);
-//});
-
- }*/
