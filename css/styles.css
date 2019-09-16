@@ -13,3 +13,19 @@ body {
     height: 20vw;
     object-fit: scale-down;
 }
+
+img.cart-image{
+    width: 20%;
+    object-fit: scale-down;
+}
+
+    thead td, th {
+        border: 0;
+        color: #666;
+        font-size: 0.8rem;
+      }
+    
+    td, th {
+      vertical-align: middle;
+      text-align: center;
+    }

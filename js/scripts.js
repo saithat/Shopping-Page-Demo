@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // all custom jQuery will go here
 
     endpoint =  "https://api.punkapi.com/v2/beers";
     
@@ -16,7 +15,7 @@ $(document).ready(function() {
                 `
                 <div class="col-auto mb-3 beer-card">
                     <div class="card"> 
-                    <img src="${beer.image_url}" class="card-img-top">
+                        <img src="${beer.image_url}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="beer-name">${beer.name}</h5>
                             <p class="card-text">${beer.description}</p>
@@ -30,35 +29,41 @@ $(document).ready(function() {
         }
 
 
-    $('button').click(function(){
-        let cartImage = $(this).closest(".card").find(".card-img-top").attr("src");
-        console.log($(this).closest(".card"));
-        //console.log(cartImage);
+    
+
+   $('.card-deck').on('click', '.add-to-cart', function(){
+     //function addToCart(){
+         //alert("button pressed!");
+        let cartImage = $(this).closest(".card").find("img").attr("src");
+        console.log(cartImage);
         let cartName = $(this).closest('.card-body').find('.beer-name').text();
-        console.log(cartName);
+        //console.log(cartName);
 
         let cartHTML = 
         `
-        <tr>
+        <tr class="cart-element">
             <td>${cartName}</td>
-            <td><img class="cart-image" src="${cartImage}"></img><\td>
+            <td><img class="cart-image" src="${cartImage}"/> </td>
             <td>
-                <div class="removal>
-                    <button type="button" class="btn btn-danger removal">
+                    <button type="button" class="removal btn btn-danger">
                         Remove
-                    </button>
-                </div>
+                    </button>  
             </td>
         </tr>
         `;
-    $('.table-body').append(cartHTML);
-    });
 
-    $('.removal').click(function() {
-        $(this).closest('tr').reomve();
+        //console.log(cartHTML);
+    $('.cart-table').append(cartHTML);
+    });
+     // }
+
+    $('.cart-table').on('click', '.removal', function() {
+        //console.log("about to remove");
+        $(this).closest('.cart-element').remove();
+        //console.log("tried to delete");
       });
 
-    var currentPage = 1;
+    var currentPage = 1;+
 
     $("#loadMore").click(function(){
         currentPage++;
@@ -67,3 +72,28 @@ $(document).ready(function() {
         })
     });
 });
+/*
+function addToCart(){
+    let cartImage = $(this).closest(".card").find(".card-img-top").attr("src");
+    console.log($(this).closest(".card"));
+    //console.log(cartImage);
+    let cartName = $(this).closest('.card-body').find('.beer-name').text();
+    console.log(cartName);
+
+    let cartHTML = 
+    `
+    <tr>
+        <td>${cartName}</td>
+        <td><img class="cart-image img-fluid img-thumbnail" src="${cartImage}"></img><\td>
+        <td>
+            <div class="removal>
+            <a href="#" class="btn btn-danger btn-sm">
+            <i class="fa fa-times"></i>
+            </div>
+        </td>
+    </tr>
+    `;
+$('.table-body').append(cartHTML);
+//});
+
+ }*/
